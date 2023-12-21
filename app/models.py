@@ -3,6 +3,9 @@
 
 from datetime import datetime
 from app import db
+import sqlalchemy
+from sqlalchemy import Column, String
+from sqlalchemy.orm import relationship
 
 
 class User(db.Model):
@@ -37,7 +40,7 @@ class Project(db.Model):
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    departement_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
 
     """relationship with Task Model"""
     tasks = db.relationship('Task', backref='project', lazy=True)
