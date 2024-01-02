@@ -1,0 +1,117 @@
+.bd {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/*nav bar*/
+#top {
+    position: relative;
+    text-align: center;
+    /*margin-left: 100px;
+    margin-right: 100px;*/
+}
+
+#top h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
+}
+
+.brand {
+    font-family: cursive;
+    font-weight: bolder;
+}
+
+/* index.html */
+.main_home {
+    background-color: aquamarine;
+    align-content: center;
+    text-align: center;
+    height: 100vh;
+    padding: 50px;
+}
+
+.main_home img {
+    width: 200px;
+    height: 200px;
+}
+
+/*signup form */
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logins {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    /* height: 600px; */
+    margin-top: 100px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 60px;
+    padding: 50px;
+    width: 55vw;
+}
+
+.logins img {
+    width: 100px;
+    height: 100px;
+}
+
+.logins h2 {
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
+}
+
+.loginslabel {
+    margin-bottom: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+    padding-right: 30px;
+}
+
+.logins input {
+    /*width: 100%;*/
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.logins button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* tracker.html */
+.tracker_form {
+    position: relative;
+    background-color: aquamarine;
+    padding: 0px 70px 50px;
+    text-align: center;
+}
+
+.form_text {
+    text-align: center;
+    padding: 50px;
+}
+
+.tracker_form .row {
+    margin-bottom: 100px;
+}

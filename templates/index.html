@@ -6,6 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>HELLO NOW</h1>
+    {% extends "template.html" %}
+    {% block content %}
+    <section class="main_home">
+        <div class="">
+            <img src="static/images/ClockWise-2.png" alt="">
+            <h2>ClockWise</h2>
+            <div class="">
+                <p>Welcome to Clockwise App, your go-to platform for efficient time tracking and project management.</p>
+                <p>Log in or create an account to get started!</p>
+            </div>
+            <a href="{{ url_for('signup') }}">
+                <button> Signup</button>
+            </a>
+        
+            <a href="{{ url_for('login') }}">
+                <button> Login</button>
+            </a>
+        </div>
+    </section>
+    {% endblock %}
 </body>
 </html>

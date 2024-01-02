@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    {% extends "template.html" %}
+    {% block content %}
+    <div class="main">
+        <div class="logins">
+            <img src="static/images/ClockWise-2.png" alt="">
+            <h2>Signup</h2>
+            <form action="{{ url_for('signup') }}" method="post">
+                {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="username" class="loginslabel">
+                            {{ form.username.label }}
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form.username(size=32) }}
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="email" class="loginslabel">
+                            {{ form.email.label }} 
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form.email(size=32) }}
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="password" class="loginslabel">
+                            {{ form.password.label }} 
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form.password(size=32) }}
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label for="password" class="loginslabel">
+                            {{ form.confirm_password.label }} 
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form.confirm_password(size=32) }}
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
