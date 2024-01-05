@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
@@ -9,11 +9,21 @@ from flask_admin.form import Select2Widget
 from wtforms import SelectField
 from app.config import Config
 from app.models import User, Department, Project, Task
-
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
 from werkzeug.security import generate_password_hash, check_password_hash
+
+'''google calendar imports'''
+import datetime
+import os.path
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://Wambui:Wambui3930@localhost:3306/clockwise'
@@ -54,10 +64,24 @@ class ProjectView(ModelView):
         }
     }
 
+class TaskView(ModelView):
+    column_list = ('id', 'description', 'project')
+    column_labels = {'project': 'Project'}
+    form_columns = ('description', 'project_id')
+
+    form_overrides = {
+        'project':SelectField
+    }
+    form_args = {
+        'project': {
+            'widget': Select2Widget()
+        }
+    }
+
 admin.add_view(UserView(User, db.session))
 admin.add_view(ModelView(Department, db.session))
 admin.add_view(ProjectView(Project, db.session))
-admin.add_view(ModelView(Task, db.session))
+admin.add_view(TaskView(Task, db.session))
 
 class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -71,17 +95,65 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
 
+'''google credentials'''
+def get_credentials():
+    creds = None
+    if "token.json" in os.listdir("."):
+        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            creds = flow.run_local_server(port=0)
+        with open("token.json", "w") as token:
+            token.write(creds.to_json())
+    return creds
+
 @app.route('/', strict_slashes=False)
 def home():
     return render_template('index.html')
 
 @app.route('/tracker', strict_slashes=False)
 def tracker():
-    return render_template('tracker.html')
+    projects = Project.query.all()
+    tasks = Task.query.all()
+    return render_template('tracker.html', projects=projects, tasks=tasks)
 
 @app.route('/calendar', strict_slashes=False)
 def calendar():
-    return render_template('calendar.html')
+    try:
+        creds = get_credentials()
+        service = build("calendar", "v3", credentials=creds)
+
+        # Call the Calendar API
+        now = datetime.datetime.utcnow().isoformat() + "Z"  # 'Z' indicates UTC time
+        events_result = (
+            service.events()
+            .list(
+                calendarId="primary",
+                timeMin=now,
+                maxResults=10,
+                singleEvents=True,
+                orderBy="startTime",
+            )
+            .execute()
+        )
+        events = events_result.get("items", [])
+
+        if not events:
+            return render_template('calendar.html', events=[])
+
+        return render_template('calendar.html', events=events)
+
+    except HttpError as error:
+        return f"An error occurred: {error}"
+
+@app.route('/oauth2callback')
+def oauth2callback():
+    flow.fetch_token(authorization_response=url_for('oauth2callback', _external=True))
+    session['credentials'] = 'path/to/credentials.json'  # Save credentials securely
+    return redirect(url_for('calendar'))
 
 @app.route('/projects_summary', strict_slashes=False)
 def projects_summary():
@@ -118,6 +190,7 @@ def login():
 
             if user and check_password_hash(user.password, form.password.data):
                 session['user_id'] = user.id
+                db.session.commit()
                 return redirect(url_for('tracker'))
             else:
                 return render_template('login.html', form=form, error='Invalid credentials')
@@ -139,6 +212,19 @@ def save_entry():
         return redirect(url_for('success_page'))
     
     return redirect(url_for('error_page'))
+
+@app.route('/test')
+def test():
+    with current_app.app_context():
+        try:
+            projects = Project.query.all()
+            print(projects)
+        except Exception as e:
+            print(f"Error: {e}")
+            import traceback
+            traceback.print_exc()
+
+        return 'Form Success'
 
 @app.route('/success')
 def success_page():

@@ -53,9 +53,7 @@ class Task(db.Model):
     __tablename__ = 'task'
     id  = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.Text, nullable=False)
-    start_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    end_time = db.Column(db.DateTime)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
 
     def __repr__(self):
-        return f"Task('{self.description}', '{self.start_time}', '{self.end_time}')"
+        return f"Task('{self.description}')"

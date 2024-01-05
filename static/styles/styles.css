@@ -115,3 +115,39 @@ button:hover {
 .tracker_form .row {
     margin-bottom: 100px;
 }
+
+/* Projects_summary.html */
+.main_projects {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+    font-family: ;
+    font-weight: lighter;
+}
+
+.main_projects h2 {
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
+}
+
+/* Reports page */
+.main_reports {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+    font-family: ;
+    font-weight: lighter;
+}
+
+.main_reports h2 {
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
+}

@@ -23,17 +23,17 @@
                     </div>
                     <div class="row">
                         <label for="Project" class="col-sm-2 form-control-lg">Select Project:</label>
-                        <select name="Project" class="col-sm-6 form-control-lg">
+                        <select name="project" class="col-sm-6 form-control-lg">
                             {% for project in projects %}
                                 <option value="{{ project.id }}">{{ project.name }}</option>
                             {% endfor %}
                         </select> <br>
                     </div>
                     <div class="row">
-                        <label for="Task" class="col-sm-2 form-control-lg">Select Task:</label>
+                        <label for="task" class="col-sm-2 form-control-lg">Select Task:</label>
                         <select name="Tasks" id="" class="col-sm-6 form-control-lg">
                             {% for task in tasks %}
-                                <option value="">Task 1</option>
+                                <option value="{{ task.id}}">{{ task.description}}</option>
                             {% endfor %}
                         </select>
                         <input type="checkbox" name="" class="col-sm-2">
