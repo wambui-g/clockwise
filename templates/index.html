@@ -5,59 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clockwise App</title>
-    
-    <!-- Link to your CSS stylesheets -->
-    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Clockwise App</h1>
-    </header>
+    <div class="container">
+        <h1>Welcome to Clockwise</h1>
+        <p>A simple and efficient time tracking app.</p>
 
-    <!-- Main Content Section -->
-    <main>
-        <!-- Brief Description of the App -->
-        <section id="app-description">
-            <p>Welcome to Clockwise App, your go-to platform for efficient time tracking and project management.</p>
-            <p>Log in or create an account to get started!</p>
-        </section>
+        <div class="buttons">
+            <button onclick="location.href='#'">Login</button>
+            <button onclick="location.href='#'">Create Account</button>
+            <button onclick="location.href='#'">Sign In</button>
+        </div>
 
-        <!-- Account Creation Section -->
-        <section id="account-creation">
-            <h2>Create an Account</h2>
-            <form action="{{ url_for('register') }}" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-
-                <button type="submit">Sign Up</button>
-            </form>
-        </section>
-
-        <!-- Logging In Section -->
-        <section id="logging-in">
-            <h2>Log In</h2>
-            <form action="{{ url_for('login') }}" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-
-                <button type="submit">Log In</button>
-            </form>
-        </section>
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <!-- Add footer content if needed -->
-    </footer>
-
+        <div class="image-section">
+            <img src="clockwise-2.png" alt="">
+        </div>
+    </div>
 </body>
 
 </html>
