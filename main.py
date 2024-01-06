@@ -7,7 +7,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.form import Select2Widget
 from wtforms import SelectField
-from app.config import Config
+from app import db
 from app.models import User, Department, Project, Task
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
@@ -29,11 +29,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://Wambui:Wambui3930@localhost:3306/clockwise'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'main'
+db.init_app(app)
 
-db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-admin = Admin(app)
+admin = Admin(app, name='Admin', template_mode='bootstrap3')
 
 class UserView(ModelView):
     column_list = ('id', 'username', 'email', 'password', 'department', 'created_at')
@@ -87,7 +87,8 @@ class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    department = StringField('Department', validators=[DataRequired()])
+
     submit = SubmitField ('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -166,12 +167,13 @@ def reports():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
+
     if form.validate_on_submit():
         new_user = User(
                 username=form.username.data,
                 email=form.email.data,
-                password=generate_password_hash(form.password.data),
-                department_id=1
+                password=form.password.data,
+                department_id=form.department.data
                 )
 
         db.session.add(new_user)
@@ -186,13 +188,19 @@ def login():
     with app.app_context():
         form = LoginForm()
         if form.validate_on_submit():
-            user = User.query.filter_by(email=form.email.data).first()
+            email = form.email.data
+            password = form.password.data
 
-            if user and check_password_hash(user.password, form.password.data):
+            print(f"Email: {email}, Password: {password}")
+
+            user = User.query.filter_by(email=email).first()
+
+            if user and user.password == password:
                 session['user_id'] = user.id
-                db.session.commit()
+                print("Login successful!")
                 return redirect(url_for('tracker'))
             else:
+                print("Invalid credentials!")
                 return render_template('login.html', form=form, error='Invalid credentials')
 
         return render_template('login.html', form=form)
