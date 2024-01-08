@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar</title>
+    <title>Document</title>
 </head>
 <body>
     {% extends "template.html" %}
     {% block content %}
-
-    <h1> Google Calendar</h1>
-
-    {% if events %}
-    <ul>
-        {% for event in events %}
-            <li>{{ event.start.dateTime }} - {{ event.summary }}</li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No upcoming events found.</p>
-    {% endif %}
-    
+    <section class="main_calendar">
+        <div class="">
+            <img src="static/images/ClockWise-2.png" alt="">
+            <h2>ClockWise</h2>
+            <button class="calendar_button">
+                <a href="{{ url_for('calendar_new') }}">Add a new calendar</a>
+            </button>
+        </div>
+    </section>
     {% endblock %}
 </body>
 </html>
