@@ -123,6 +123,10 @@ def tracker():
 
 @app.route('/calendar', strict_slashes=False)
 def calendar():
+    return render_template('calendar.html')
+
+@app.route('/calendar_new', strict_slashes=False)
+def calendar_new():
     try:
         creds = get_credentials()
         service = build("calendar", "v3", credentials=creds)
@@ -143,9 +147,9 @@ def calendar():
         events = events_result.get("items", [])
 
         if not events:
-            return render_template('calendar.html', events=[])
+            return render_template('calendar_new.html', events=[])
 
-        return render_template('calendar.html', events=events)
+        return render_template('calendar_new.html', events=events)
 
     except HttpError as error:
         return f"An error occurred: {error}"

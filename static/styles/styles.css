@@ -151,3 +151,19 @@ button:hover {
     font-family: 'Times New Roman', Times, serif;
     font-weight: lighter;
 }
+
+/* calendar page */
+.main_calendar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
+    font-family: ;
+    font-weight: lighter;
+}
+
+.calendar_button {
+    size: 30px;
+}
