@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clockwise App</title>
 </head>
-<body>
-    {% extends "template.html" %}
-    {% block content %}
-    <section class="main_home">
-        <div class="">
-            <img src="static/images/ClockWise-2.png" alt="">
-            <h2>ClockWise</h2>
-            <div class="">
-                <p>Welcome to Clockwise App, your go-to platform for efficient time tracking and project management.</p>
-                <p>Log in or create an account to get started!</p>
-            </div>
-            <a href="{{ url_for('signup') }}">
-                <button> Signup</button>
-            </a>
+
+<body style="background-color: #ffffff; color: #3498db; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="container" style="position: relative; text-align: center; padding: 50px;">
+        <section class="buttons" style="position: absolute; top: 20px; right: 20px; display: flex; gap: 10px;">
+            <button onclick="location.href='#login'" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Login</button>
+            <button onclick="location.href='#create-account'" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Create Account</button>
+            <button onclick="location.href='#request-demo'" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Request Demo</button>
+        </section>
+
+        <img src="C:\Users\hp\Downloads\C (1).png" alt="" style="width: 80px; position: absolute; top: 20px; left: 20px;">
         
-            <a href="{{ url_for('login') }}">
-                <button> Login</button>
-            </a>
-        </div>
-    </section>
-    {% endblock %}
+        <header style="margin-bottom: 30px;">
+            <h1>Welcome to Clockwise</h1>
+            <p style="color: black; Font-size: 30px;">The most popular free time tracker for teams.
+             Clockwise is a time tracker and timesheet app that lets you track work hours across projects.
+             Unlimited users, free forever.</p>
+        </header>
+
+        <section class="image-section" style="margin-top: 1in;">
+            <div>
+                <h2>Our App Overview</h2>
+                <img src="C:\Users\hp\OneDrive\Pictures\Screenshots\Screenshot 2023-12-11 142632.png" alt="App Overview" style="width: 200%; max-width: 600px; margin-bottom: 20px;">
+            </div>
+            <div>
+                <h2>Time Management Features</h2>
+                <p style="color: black; Font-size: 20px;">Track productivity, attendance, and billable hours with a simple time tracker and timesheet.</p>
+                <img src="C:\Users\hp\OneDrive\Pictures\Screenshots\Screenshot 2023-12-11 142606.png" alt="App Features" style="width: 200%; max-width: 600px; margin-bottom: 20px;">
+            </div>
+            <div>
+                <h2>Reports Page</h2>
+                <p style="color: black; Font-size: 20px;">Analyze and export tracked time.</p>
+                <img src="C:\Users\hp\OneDrive\Pictures\Screenshots\Screenshot 2023-12-11 142718.png" alt="Reports" style="width: 200%; max-width: 600px;">
+            </div>
+        </section>
+    </div>
+
+    <footer style="text-align: center; padding: 20px;">
+        <p style="font-size: 14px;">&copy; 2023 Clockwise App. All rights reserved.</p>
+    </footer>
 </body>
+
 </html>
