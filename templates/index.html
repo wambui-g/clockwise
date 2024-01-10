@@ -11,20 +11,43 @@
     <section class="main_home">
         <div class="">
             <img src="static/images/ClockWise-2.png" alt="">
-            <h2>ClockWise</h2>
             <div class="">
-                <p>Welcome to Clockwise App, your go-to platform for efficient time tracking and project management.</p>
-                <p>Log in or create an account to get started!</p>
+                <h1>Welcome to Clockwise</h1>
+                <p>The most popular free time tracker for teams. <br>
+                 Clockwise is a time tracker and timesheet app that lets you track work hours across projects. <br>
+                 Unlimited users, free forever.</p>
             </div>
+
             <a href="{{ url_for('signup') }}">
-                <button> Signup</button>
+                <button class="btn btn-outline-primary btn-lg main_button"> Signup</button>
             </a>
         
             <a href="{{ url_for('login') }}">
-                <button> Login</button>
+                <button class="btn btn-outline-primary btn-lg main_button"> Login</button>
             </a>
         </div>
     </section>
+
+    <section class="image-section">
+        <div class="border_line"></div>
+        <div class="image-section_divs">
+            <h2>Our App Overview</h2>
+            <img src="static/images/overview.png" alt="App Overview" style="width: 200%; max-width: 600px; margin-bottom: 20px;">
+        </div>
+        <div class="border_line"></div>
+        <div class="image-section_divs">
+            <h2>Time Management Features</h2>
+            <p style="color: black; Font-size: 20px;">Track productivity, attendance, and billable hours with a simple time tracker and timesheet.</p>
+            <img src="static/images/features.png" alt="App Features" style="width: 200%; max-width: 600px; margin-bottom: 20px;">
+        </div>
+        <div class="border_line"></div>
+        <div class="image-section_divs">
+            <h2>Reports Page</h2>
+            <p style="color: black; Font-size: 20px;">Analyze and export tracked time.</p>
+            <img src="static/images/reports.png" alt="Reports" style="width: 200%; max-width: 600px;">
+        </div>
+    </section>
+
     {% endblock %}
 </body>
 </html>

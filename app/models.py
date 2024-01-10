@@ -52,7 +52,7 @@ class Project(db.Model):
 
 class Task(db.Model):
     __tablename__ = 'task'
-    id  = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.Text, nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
 
@@ -61,7 +61,7 @@ class Task(db.Model):
 
 class TimeEntry(db.Model):
     __tablename__ = 'time_entry'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     start_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     end_time = db.Column(db.DateTime)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)

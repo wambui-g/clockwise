@@ -170,8 +170,30 @@ def oauth2callback():
     return redirect(url_for('calendar'))
 
 @app.route('/projects_summary', strict_slashes=False)
+@login_required
 def projects_summary():
-    return render_template('projects_summary.html')
+    # Retrieve TimeEntry records for the logged-in user
+    user_entries = TimeEntry.query.filter_by(user_id=current_user.id).all()
+
+    # Create a dictionary to store project names
+    project_names = {project.id: project.name for project in Project.query.all()}
+
+    # Group entries by project
+    grouped_entries = {}
+    for entry in user_entries:
+        project_id = entry.project_id
+        if project_id not in grouped_entries:
+            grouped_entries[project_id] = []
+        grouped_entries[project_id].append(entry)
+
+    # Calculate total hours for each project
+    project_totals = {}
+    for project_id, entries in grouped_entries.items():
+        project_name = project_names.get(project_id, f"Unknown Project ({project_id})")
+        total_hours = sum((entry.end_time - entry.start_time).seconds / 3600 for entry in entries)
+        project_totals[project_name] = total_hours
+
+    return render_template('projects_summary.html', project_totals=project_totals)
 
 @app.route('/reports', strict_slashes=False)
 def reports():
@@ -240,9 +262,9 @@ def save_entry():
 
         db.session.add(new_entry)
         db.session.commit()
-        print("error")
+        print("form submission successful!")
 
-        return redirect(url_for('success_page'))
+        return render_template('/tracker.html')
     
     return redirect(url_for('error_page'))
 

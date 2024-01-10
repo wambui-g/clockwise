@@ -11,8 +11,21 @@
     <section class="main_projects">
         <div>
             <h2>Projects Summary</h2>
-            <table>
-                
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Total Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project, total_hours in project_totals.items() %}
+                        <tr>
+                            <td>{{ project }}</td>
+                            <td>{{ total_hours|round(2) }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </section>

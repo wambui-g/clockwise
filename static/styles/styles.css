@@ -23,16 +23,50 @@
 
 /* index.html */
 .main_home {
-    background-color: aquamarine;
+    background-color: #ffffff;
     align-content: center;
     text-align: center;
-    height: 100vh;
+    height: 80vh;
     padding: 50px;
 }
 
 .main_home img {
     width: 200px;
     height: 200px;
+}
+
+.main_home p {
+    padding-top: 50px;
+    padding-bottom: 60px;
+    font-size: 1.5rem;
+}
+
+.main_button {
+    margin-right: 50px;
+}
+
+.image-section {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    padding: 50px;
+}
+
+.image-section_divs {
+    height: 70vh;
+}
+
+.image-section_divs h2 {
+    padding-bottom: 30px;
+}
+
+.border_line {
+    margin-bottom: 60px;
+    border-top: 20px dotted rgb(202, 248, 248);
+    width: 20%;
 }
 
 /*signup form */
@@ -49,11 +83,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aquamarine;
+    background-color: rgb(255, 255, 255);
     /* height: 600px; */
     margin-top: 100px;
     padding: 10px 15px;
-    border: none;
+    border-color: #ccc;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-width: 5px;
     border-radius: 60px;
     padding: 50px;
     width: 55vw;
@@ -62,20 +98,23 @@
 .logins img {
     width: 100px;
     height: 100px;
+    opacity: 100%;
 }
 
 .logins h2 {
-    margin-bottom: 30px;
+    margin: 30px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: lighter;
 }
 
+/*
 .loginslabel {
     margin-bottom: 50px;
     font-family: 'Times New Roman', Times, serif;
     font-size: x-large;
     padding-right: 30px;
 }
+*/
 
 .logins input {
     /*width: 100%;*/
@@ -86,25 +125,24 @@
     border-radius: 4px;
 }
 
-.logins button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.logins p {
+    padding-top: 20px;
 }
 
-button:hover {
-    background-color: #45a049;
-}
 
 /* tracker.html */
 .tracker_form {
     position: relative;
-    background-color: aquamarine;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 0px 70px 50px;
     text-align: center;
+}
+
+.tracker_form h2 {
+    margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
 }
 
 .form_text {
