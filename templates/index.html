@@ -12,9 +12,9 @@
 <body style="background-color: #ffffff; color: #3498db; font-family: Buttershine, Zasline, Sacramento, Akira, Gilgan;">
     <div class="container" style="position: relative; text-align: center; padding: 50px;">
         <section class="buttons" style="position: absolute; top: 20px; right: 20px; display: flex; gap: 10px;">
-            <button onclick="location.href='#login'" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Login</button>
-            <button onclick="location.href='#create-account'" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Create Account</button>
-            <button onclick="location.href='#request-demo'" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Request Demo</button>
+            <button id="loginBtn" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Login</button>
+            <button id="createAccountBtn" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Create Account</button>
+            <button id="requestDemoBtn" style="background-color: #3498db; color: #ffffff; font-family: 'Arial', sans-serif; padding: 10px 20px; cursor: pointer; margin-top: 0in;">Request Demo</button>
         </section>
 
         <img src="static/images/clockwise.png" alt="" style="width: 80px; position: absolute; top: 20px; left: 20px;">
@@ -47,6 +47,26 @@
     <footer style="text-align: center; padding: 20px;">
         <p style="font-size: 14px;">&copy; 2023 Clockwise App. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login Button
+            document.getElementById('loginBtn').addEventListener('click', function() {
+                window.location.href = '/login';  // Redirect to the login page
+            });
+
+            // Create Account Button
+            document.getElementById('createAccountBtn').addEventListener('click', function() {
+                window.location.href = '/create-account';  // Redirect to the create account page
+            });
+
+            // Request Demo Button
+            document.getElementById('requestDemoBtn').addEventListener('click', function() {
+                window.location.href = '/request-demo';  // Redirect to the request demo page
+            });
+        });
+    </script>
 </body>
 
 </html>
+
