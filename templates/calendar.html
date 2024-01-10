@@ -1,22 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calendar - Clockwise App</title>
+    <link rel="stylesheet" href="static/styles/styles.css">
+    <style>
+        /* Additional styles for the calendar */
+        body {
+            background-color: #ff69b4;
+            color: white;
+            font-family: Buttershine, Zasline, Sacramento, Akira, Gilgan;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .calendar {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid #ff69b4;
+            margin-top: 10px;
+        }
+
+        .save-button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    {% extends "template.html" %}
-    {% block content %}
-    <section class="main_calendar">
-        <div class="">
-            <img src="static/images/ClockWise-2.png" alt="">
-            <h2>ClockWise</h2>
-            <button class="calendar_button">
-                <a href="{{ url_for('calendar_new') }}">Add a new calendar</a>
-            </button>
+    <div class="container">
+        <div class="calendar">
+            <div class="header">
+                <button onclick="previousMonth()">Previous</button>
+                <h2 id="month-year"></h2>
+                <button onclick="nextMonth()">Next</button>
+            </div>
+
+            <div class="days" id="calendar-days"></div>
+
+            <input type="text" class="task-input" id="taskInput" placeholder="Enter your task">
+            <button class="save-button" onclick="saveTask()">Save Task</button>
         </div>
-    </section>
-    {% endblock %}
+    </div>
+
+    <footer style="text-align: center; padding: 20px;">
+        <p style="font-size: 14px;">&copy; 2023 Clockwise App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showCalendar();
+        });
+
+        function showCalendar() {
+            // Your calendar rendering logic goes here
+            // You may use a library like FullCalendar or implement your own logic
+            // For simplicity, I'll leave it as a placeholder
+            document.getElementById('month-year').innerText = 'January 2023';
+            document.getElementById('calendar-days').innerHTML = '<div class="day">1</div><div class="day">2</div>...';
+        }
+
+        function previousMonth() {
+            // Your logic to navigate to the previous month
+            // For simplicity, I'll leave it as a placeholder
+            showCalendar();
+        }
+
+        function nextMonth() {
+            // Your logic to navigate to the next month
+            // For simplicity, I'll leave it as a placeholder
+            showCalendar();
+        }
+
+        function saveTask() {
+            // Your logic to save the task
+            // This is where you would typically send a request to your server
+            // to store the task in the database
+            var task = document.getElementById('taskInput').value;
+            alert('Task saved: ' + task);
+        }
+    </script>
 </body>
+
 </html>
+
