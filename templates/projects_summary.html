@@ -1,21 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Summary</title>
+    <title>Projects Summary - Clockwise App</title>
+    <link rel="stylesheet" href="static/styles/styles.css">
+    <style>
+        /* Additional styles for the projects summary page */
+        body {
+            background-color: #ffffff;
+            color: #3498db;
+            font-family: Buttershine, Zasline, Sacramento, Akira, Gilgan;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .project-summary {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .button-container {
+            margin-right: 20px;
+        }
+
+        .input-box {
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        .start-time-button,
+        .project-button,
+        .task-button,
+        .description-button {
+            background-color: #add8e6; /* Light blue color */
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    {% extends "template.html" %}
-    {% block content %}
-    <section class="main_projects">
-        <div>
-            <h2>Projects Summary</h2>
-            <table>
-                
-            </table>
+    <div class="container">
+        <div class="project-summary">
+            <div class="button-container">
+                <button class="start-time-button" onclick="showInput('start-time')">Start Time</button>
+                <button class="project-button" onclick="showInput('project')">Project</button>
+                <button class="task-button" onclick="showInput('task')">Task</button>
+                <button class="description-button" onclick="showInput('description')">Description</button>
+            </div>
+
+            <div>
+                <input type="text" class="input-box" id="start-time-input" placeholder="Enter Start Time">
+                <input type="text" class="input-box" id="project-input" placeholder="Enter Project">
+                <input type="text" class="input-box" id="task-input" placeholder="Enter Task">
+                <input type="text" class="input-box" id="description-input" placeholder="Enter Description">
+            </div>
         </div>
-    </section>
-    {% endblock %}
+    </div>
+
+    <footer style="text-align: center; padding: 20px;">
+        <p style="font-size: 14px;">&copy; 2023 Clockwise App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showInput(inputType) {
+            // Your logic to handle button click and show corresponding input box
+            // For simplicity, I'll leave it as a placeholder
+            console.log('Button clicked: ' + inputType);
+        }
+    </script>
 </body>
+
 </html>
+
