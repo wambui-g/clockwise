@@ -60,7 +60,7 @@ class Task(db.Model):
         return f"Task('{self.description}')"
 
 class TimeEntry(db.Model):
-    __table__ = 'time_entry'
+    __tablename__ = 'time_entry'
     id = db.Column(db.Integer, primary_key=True)
     start_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     end_time = db.Column(db.DateTime)

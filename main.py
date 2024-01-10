@@ -235,11 +235,12 @@ def save_entry():
                 task_id=task_id,
                 billable=billable,
                 description=description,
-                user_id=current_user.id  # Set the user_id to the current user's id
+                user_id=current_user.id
         )
 
         db.session.add(new_entry)
         db.session.commit()
+        print("error")
 
         return redirect(url_for('success_page'))
     

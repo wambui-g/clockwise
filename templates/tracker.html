@@ -14,15 +14,15 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <label for="Start Time" class="form-control-lg ">Start Time: </label>
-                            <input type="datetime-local" class="form-control-lg">
+                            <input type="datetime-local" name="start_time" class="form-control-lg">
                         </div>
                         <div class="col-sm-4">
                             <label for="End Time" class="form-control-lg ">End Time: </label>
-                            <input type="datetime-local" class="form-control-lg">
+                            <input type="datetime-local" name="end_time" class="form-control-lg">
                         </div>
                     </div>
                     <div class="row">
-                        <label for="Project" class="col-sm-2 form-control-lg">Select Project:</label>
+                        <label for="project" class="col-sm-2 form-control-lg">Select Project:</label>
                         <select name="project" class="col-sm-6 form-control-lg">
                             {% for project in projects %}
                                 <option value="{{ project.id }}">{{ project.name }}</option>
@@ -31,13 +31,13 @@
                     </div>
                     <div class="row">
                         <label for="task" class="col-sm-2 form-control-lg">Select Task:</label>
-                        <select name="Tasks" id="" class="col-sm-6 form-control-lg">
+                        <select name="task" id="" class="col-sm-6 form-control-lg">
                             {% for task in tasks %}
                                 <option value="{{ task.id}}">{{ task.description}}</option>
                             {% endfor %}
                         </select>
                         <input type="checkbox" name="" class="col-sm-2">
-                        <label for="" class="col-sm-2 form-control-lg">Billable</label>
+                        <label for="billable" class="col-sm-2 form-control-lg">Billable</label>
                     </div>
                     <div class="row">
                         <label for="Description" class="col-sm-2 form-control-lg ">Description:</label> 
