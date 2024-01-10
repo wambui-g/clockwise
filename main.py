@@ -7,12 +7,14 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.form import Select2Widget
 from wtforms import SelectField
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from app import db
-from app.models import User, Department, Project, Task
+from app.models import User, Department, Project, Task, TimeEntry
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash 
+
 
 '''google calendar imports'''
 import datetime
@@ -43,6 +45,7 @@ class UserView(ModelView):
     form_overrides = {
             'department': SelectField
     }
+
     form_args = {
             'department': {
                 'widget':Select2Widget()
@@ -110,6 +113,12 @@ def get_credentials():
         with open("token.json", "w") as token:
             token.write(creds.to_json())
     return creds
+
+login_manager = LoginManager(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.route('/', strict_slashes=False)
 def home():
@@ -200,7 +209,7 @@ def login():
             user = User.query.filter_by(email=email).first()
 
             if user and user.password == password:
-                session['user_id'] = user.id
+                login_user(user)
                 print("Login successful!")
                 return redirect(url_for('tracker'))
             else:
@@ -219,7 +228,18 @@ def save_entry():
         billable = 'billable' in request.form
         description = request.form['description']
 
-        #need to update sqlalchemy to save data
+        new_entry = TimeEntry(
+                start_time=start_time,
+                end_time=end_time,
+                project_id=project_id,
+                task_id=task_id,
+                billable=billable,
+                description=description,
+                user_id=current_user.id  # Set the user_id to the current user's id
+        )
+
+        db.session.add(new_entry)
+        db.session.commit()
 
         return redirect(url_for('success_page'))
     
