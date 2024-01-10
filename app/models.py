@@ -6,9 +6,10 @@ from app import db
 import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from flask_login import UserMixin
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False)
@@ -57,3 +58,17 @@ class Task(db.Model):
 
     def __repr__(self):
         return f"Task('{self.description}')"
+
+class TimeEntry(db.Model):
+    __table__ = 'time_entry'
+    id = db.Column(db.Integer, primary_key=True)
+    start_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    end_time = db.Column(db.DateTime)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
+    task_id = db.Column(db.Integer, db.ForeignKey('task.id'), nullable=False)
+    billable = db.Column(db.Boolean, default=False)
+    description = db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"TimeEntry('{self.start_time}', '{self.end_time}', '{self.project_id}', '{self.task_id}', '{self.billable}', '{self.description}', '{self.user_id}')"
