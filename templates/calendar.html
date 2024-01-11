@@ -10,13 +10,24 @@
     {% block content %}
     <section class="main_calendar">
         <div class="">
-            <img src="static/images/ClockWise-2.png" alt="">
-            <h2>ClockWise</h2>
-            <button class="calendar_button">
-                <a href="{{ url_for('calendar_new') }}">Add a new calendar</a>
-            </button>
+            <h2> Integrate your Calendar</h2>
+            <p>For more seamless time tracking</p>
+            <div>
+                <img src="static/images/calendar.png" alt="">
+            </div>
+
+            <a href="{{ url_for('calendar_new') }}"> 
+                <button class="btn btn-outline-primary btn-lg main_button">
+                    Add a new calendar
+                </button>
+            </a>
         </div>
     </section>
+    <footer>
+        <div>
+          <p>&copy; 2023 Clockwise App. All rights reserved.</p>
+        </div>
+      </footer>
     {% endblock %}
 </body>
 </html>

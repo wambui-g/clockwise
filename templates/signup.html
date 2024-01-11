@@ -15,7 +15,7 @@
             <form action="{{ url_for('signup') }}" method="post">
                 {{ form.hidden_tag() }}
                 <div class="row">
-                    <div class="col-sm-2 d-flex align-items-center">
+                    <div class="col-sm-3 d-flex align-items-center">
                         <label for="username" class="loginslabel">
                             {{ form.username.label }}
                         </label>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-2 d-flex align-items-center">
+                    <div class="col-sm-3 d-flex align-items-center">
                         <label for="email" class="loginslabel">
                             {{ form.email.label }} 
                         </label>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-2 d-flex align-items-center">
+                    <div class="col-sm-3 d-flex align-items-center">
                         <label for="password" class="loginslabel">
                             {{ form.password.label }} 
                         </label>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-2 d-flex align-items-center">
+                    <div class="col-sm-3 d-flex align-items-center">
                         <label for="department" class="loginslabel">
                             {{ form.department.label }} 
                         </label>
@@ -65,6 +65,13 @@
             <p> Already have an account? <a href=" {{ url_for('login') }}">Log In</a></p>
         </div>
     </div>
+
+    <footer>
+        <div>
+          <p>&copy; 2023 Clockwise App. All rights reserved.</p>
+        </div>
+      </footer>
+
     {% endblock %}
 </body>
 </html>
